@@ -1,68 +1,112 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* Base fonts */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+h1,
+h2,
+h3,
+.font-serif {
+  font-family: "Playfair Display", serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  will-change: opacity, transform;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Hero animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  button {
-    background-color: #f9f9f9;
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Prova Social - quique contínuo (basketball) */
+@keyframes googleAttention {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.02, 0.98);
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: translateY(-6px) scale(1, 1);
+    animation-timing-function: ease-in;
+  }
+}
+
+/* Classes utilitárias (iguais às suas) */
+.animate-fade-in-left {
+  animation: fadeInLeft 500ms ease-out forwards;
+}
+.animate-fade-in-right {
+  animation: fadeInRight 500ms ease-out forwards;
+}
+.animate-scale-in {
+  animation: scaleIn 400ms ease-out forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 300ms ease-out forwards;
+}
+.animate-google-attention {
+  animation: googleAttention 1s infinite;
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-fade-in-left,
+  .animate-fade-in-right,
+  .animate-scale-in,
+  .animate-fade-in,
+  .animate-google-attention {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
